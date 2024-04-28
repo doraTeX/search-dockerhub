@@ -1,15 +1,16 @@
 #!/bin/bash
 
 function docker-list-tags () {
-    COMMAND_NAME="$0"
-
-    # Make array indexing start from 0 just like in bash, even in zsh.
-    if [ -n "$ZSH_VERSION" ]; then
+    if [[ -n "$ZSH_VERSION" ]]; then # zsh
+	    # Make array indexing start from 0 just like in bash, even in zsh.
         setopt localoptions ksharrays
+		FUNCTION_NAME="${funcstack[0]}"
+	else # bash
+		FUNCTION_NAME="${FUNCNAME[0]}"
     fi
 
     function docker-list-tags-usage () {
-        echo "Usage: ${COMMAND_NAME} [-j|--json] [-n|--with-name] [<NAMESPACE>/]<IMAGE>" 1>&2
+        echo "Usage: ${FUNCTION_NAME} [-j|--json] [-n|--with-name] [<NAMESPACE>/]<IMAGE>" 1>&2
         echo ""
         echo "Argument Specifications:"
         echo '  <NAMESPACE>  : Docker Hub namespace or username (default: `library`)'
@@ -21,9 +22,9 @@ function docker-list-tags () {
         echo '  -h, --help      : Show this help message and exit'
         echo
         echo "Examples:"
-        echo "  ${COMMAND_NAME} ubuntu"
+        echo "  ${FUNCTION_NAME} ubuntu"
         echo "    List all tags for the 'library/ubuntu' image"
-        echo "  ${COMMAND_NAME} mysql/mysql-server"
+        echo "  ${FUNCTION_NAME} mysql/mysql-server"
         echo "    List all tags for the 'mysql/mysql-server' image"
     }
 
