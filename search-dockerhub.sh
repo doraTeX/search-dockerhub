@@ -2,11 +2,11 @@
 
 function docker-list-tags () {
     if [[ -n "$ZSH_VERSION" ]]; then # zsh
-	    # Make array indexing start from 0 just like in bash, even in zsh.
+        # Make array indexing start from 0 just like in bash, even in zsh.
         setopt localoptions ksharrays
-		FUNCTION_NAME="${funcstack[0]}"
-	else # bash
-		FUNCTION_NAME="${FUNCNAME[0]}"
+        FUNCTION_NAME="${funcstack[0]}"
+    else # bash
+        FUNCTION_NAME="${FUNCNAME[0]}"
     fi
 
     function docker-list-tags-usage () {
