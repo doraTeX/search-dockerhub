@@ -77,6 +77,11 @@ docker-inspect-architecture mysql/mysql-server:8.0
 * curl
 * jq
 
+# Details
+
+See my [blog entry](https://qiita.com/doraTeX/items/705ca609b48b69f37ed0) (in Japanese) for more information.
+
+
 # License
 
 [MIT License](https://github.com/doraTeX/search-dockerhub/blob/main/LICENSE)
