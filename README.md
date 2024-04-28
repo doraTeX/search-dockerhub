@@ -74,6 +74,7 @@ docker-inspect-architecture mysql/mysql-server:8.0
 # Requirements
 
 * Bash or Zsh
+* curl
 * jq
 
 # License
