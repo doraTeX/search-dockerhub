@@ -120,7 +120,7 @@ function docker-inspect-architecture () {
         FUNCTION_NAME="${FUNCNAME[0]}"
     fi
 
-	if [ $# -ne 1 ]; then
+    if [ $# -ne 1 ]; then
         echo "Usage: ${FUNCTION_NAME} [<NAMESPACE>/]<IMAGE>[:<TAG>]" 1>&2
         echo ""
         echo "Argument Specifications:"
