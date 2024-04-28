@@ -114,8 +114,14 @@ function docker-list-tags () {
 }
 
 function docker-inspect-architecture () {
-    if [ $# -ne 1 ]; then
-        echo "Usage: $0 [<NAMESPACE>/]<IMAGE>[:<TAG>]" 1>&2
+    if [[ -n "$ZSH_VERSION" ]]; then # zsh
+        FUNCTION_NAME="${funcstack[0]}"
+    else # bash
+        FUNCTION_NAME="${FUNCNAME[0]}"
+    fi
+
+	if [ $# -ne 1 ]; then
+        echo "Usage: ${FUNCTION_NAME} [<NAMESPACE>/]<IMAGE>[:<TAG>]" 1>&2
         echo ""
         echo "Argument Specifications:"
         echo '  <NAMESPACE>  : Docker Hub namespace or username (default: `library`)'
@@ -123,13 +129,13 @@ function docker-inspect-architecture () {
         echo '  <TAG>        : Tag name (default: `latest`)'
         echo
         echo "Examples:"
-        echo "  $0 ubuntu"
+        echo "  ${FUNCTION_NAME} ubuntu"
         echo '    Inspect architectures of library/ubuntu:latest'
-        echo "  $0 ubuntu:22.04"
+        echo "  ${FUNCTION_NAME} ubuntu:22.04"
         echo '    Inspect architectures of library/ubuntu:22.04'
-        echo "  $0 mysql/mysql-server"
+        echo "  ${FUNCTION_NAME} mysql/mysql-server"
         echo '    Inspect architectures of mysql/mysql-server:latest'
-        echo "  $0 mysql/mysql-server:8.0"
+        echo "  ${FUNCTION_NAME} mysql/mysql-server:8.0"
         echo '    Inspect architectures of mysql/mysql-server:8.0'
         return 1
     fi
